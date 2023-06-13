@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-# Create your views here.r
+def no_such_url_view(request, unknown_url):
+    return render(request, '404.html', {'unknown_url': unknown_url})
 
 def home(request):
     return render(request, 'home.html')
