@@ -18,7 +18,7 @@ from django.urls import path
 from myapp import views
 
 urlpatterns = [
-    path('<path:unknown_url>/', views.no_such_url_view, name='no_such_url'),
+    # path('<path:unknown_url>/', views.no_such_url_view, name='no_such_url'),
     path('admin/', admin.site.urls),
     path('', views.home, name='/home'),
     path('login/',views.login, name='login'),
