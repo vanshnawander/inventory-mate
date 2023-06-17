@@ -8,10 +8,6 @@ def no_such_url_view(request, unknown_url):
     return render(request, '404.html', {'unknown_url': unknown_url})
 
 
-def home(request):
-    return render(request, 'home.html')
-
-
 def login(request):
     return render(request, 'login.html')
 
