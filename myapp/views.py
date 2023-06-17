@@ -16,24 +16,32 @@ def login(request):
     return render(request, 'login.html')
 
 
+def SMhome(request):
+    return render(request, 'SMhome.html')
+
+
+def createPO(request):
+    return render(request, 'createPO.html')
+
+
+def recievePO(request):
+    return render(request, 'recievePO.html')
+
+
+def issues(request):
+    return render(request, 'issues.html')
+
+
 def ProductOrder(request):
     return render(request, 'order.html')
 
 
-def inventory_stock(request):
-    return render(request, 'stock.html')
-
-
-def OrderAuth(request):
-    return render(request, 'orderauth.html')
+def inventory(request):
+    return render(request, 'inventory.html')
 
 
 def OrderFinalise(request):
     return render(request, 'orderFinal.html')
-
-
-def storemanagerhomepage(request):
-    return render(request, 'storemanagerhomepage.html')
 
 
 def Home_admin(request):
