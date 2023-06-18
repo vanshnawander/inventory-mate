@@ -5,30 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <center>
         <h1>Inventory details</h1>
         <table style="width:100%">
             <tr>
+                <th>Sno</th>
                 <th>Vendor name</th>
-                <th>power value</th>
+                <th>date</th>
             </tr>
             <tr>
                 <td>1</td>
-                <td>milk</td>
-                <td>25</td>
-                <td>liters</td>
-                <td>25</td>
+                <td><a href="">abc</a>
+                </td>
+                <td>11/03/2023</td>
             </tr>
+
             <tr>
                 <td>2</td>
-                <td>butter</td>
-                <td>5</td>
-                <td>packets</td>
-                <td>7</td>
+                <td><a href="">ad </a></td>
+                <td>12/03/2023</td>
             </tr>
+
+            <tr>
+                <td>3</td>
+                <td><a href="">egfs</a></td>
+                <td>12/03/2023</td>
+            </tr>
+
         </table>
     </center>
 </body>

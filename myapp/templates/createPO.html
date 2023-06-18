@@ -17,18 +17,30 @@
 </head>
 
 <body>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <center>
-        <h1>Inventory details</h1>
+        <h1>Create Purchase Order</h1>
         <table style="width:100%">
             <tr>
                 <th>Sno</th>
-                <th>Name</th>
+                <th>Item</th>
                 <th>Quantity</th>
-                <th>Units</th>
-                <th>power value</th>
+                <th>UOM</th>
+                <th>Vendor</th>
+                <th>Price</th>
+                <th><a href="#">Edit</a></th>
+
             </tr>
             <tr>
                 <th>1 </th>
+                <th> </th>
+                <th> </th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -40,9 +52,13 @@
                 <th> </th>
                 <th> </th>
                 <th> </th>
+                <th> </th>
+                <th> </th>
             </tr>
             <tr>
                 <th>3 </th>
+                <th> </th>
+                <th> </th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -54,9 +70,13 @@
                 <th> </th>
                 <th> </th>
                 <th> </th>
+                <th> </th>
+                <th> </th>
             </tr>
             <tr>
                 <th>5 </th>
+                <th> </th>
+                <th> </th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
@@ -66,7 +86,7 @@
         </table>
         <br><br>
     </center>
-    <a href="PO.html">add items</a>
+    <a href="#">add items</a>
 </body>
 
 </html>
