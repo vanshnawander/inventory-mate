@@ -41,8 +41,11 @@
       <th>Sno</th>
       <th>Name</th>
       <th>UoM (Unit of Measurement)</th>
-      <th>Quantity</th>
-      <th>Par Value</th>
+      <th>Quantity available</th>
+      <th>Price</th>
+      <th>Tax</th>
+      <th>Primary vendor</th>
+      <th>par value</th>
     </tr>
     <tr>
       <td>1</td>
@@ -72,6 +75,20 @@
       <td>40</td>
       <td>50</td>
     </tr>
+    {% for item in Product_details %}
+    <tr>
+      <div class="item">
+        <td>{{item.serial_number }}</td>
+        <td>{{item.product_name}}</td>
+        <td>{{item.UOM}}</td>
+        <td>{{item.quantity_available}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.tax_percentage}}</td>
+        <td>{{item.primary_vendor}}</td>
+        <td>{{item.par_value}}</td>
+      </div>
+    </tr>
+    {% endfor %}
   </table>
 
   <script>

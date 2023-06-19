@@ -11,3 +11,4 @@ class Product_details(models.Model):
     price = models.FloatField()
     primary_vendor = models.CharField(max_length=30)
     quantity_available = models.FloatField()
+    par_value = models.FloatField()

@@ -15,20 +15,23 @@ def login(request):
 
 def SMhome(request):
     if request.method == 'POST':
-        product_name=request.POST['product_name']
-        UOM=request.POST['uom']
-        tax_percentage=request.POST['tax_percentage']
-        price=request.POST['price']
-        primary_vendor=request.POST['primary_vendor']
-        quantity_available=request.POST['quantity_available']
-        table_entry=Product_details(serial_number=1 ,product_name=product_name,UOM=UOM,tax_percentage=tax_percentage,price=price,primary_vendor=primary_vendor,quantity_available=quantity_available)
+        product_name = request.POST['product_name']
+        UOM = request.POST['uom']
+        tax_percentage = request.POST['tax_percentage']
+        price = request.POST['price']
+        primary_vendor = request.POST['primary_vendor']
+        quantity_available = request.POST['quantity_available']
+        table_entry = Product_details(serial_number=1, product_name=product_name, UOM=UOM, tax_percentage=tax_percentage,
+                                      price=price, primary_vendor=primary_vendor, quantity_available=quantity_available)
         table_entry.save()
-    a=Product_details.objects.all()
+    a = Product_details.objects.all()
     print(a)
-    return render(request, 'SMhome.html',{'Product_details':a})
+    return render(request, 'SMhome.html', {'Product_details': a})
+
 
 def add_products_in_inventory(request):
     return render(request, 'additems.html')
+
 
 def createPO(request):
     return render(request, 'createPO.html')
@@ -47,7 +50,22 @@ def ProductOrder(request):
 
 
 def inventory(request):
-    return render(request, 'inventory.html')
+    if request.method == 'POST':
+        serial_number = request.POST['serial_number']
+        product_name = request.POST['product_name']
+        UOM = request.POST['uom']
+        tax_percentage = request.POST['tax_percentage']
+        price = request.POST['price']
+        primary_vendor = request.POST['primary_vendor']
+        quantity_available = request.POST['quantity_available']
+        par_value = request.POST['par_value']
+        table_entry = Product_details(serial_number=1, product_name=product_name, UOM=UOM, tax_percentage=tax_percentage,
+                                      price=price, primary_vendor=primary_vendor, quantity_available=quantity_available,
+                                      par_value=par_value)
+        table_entry.save()
+    a = Product_details.objects.all()
+    print(a)
+    return render(request, 'inventory.html', {'Product_details': a})
 
 
 def OrderFinalise(request):
