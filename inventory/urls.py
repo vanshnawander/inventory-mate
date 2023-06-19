@@ -23,12 +23,12 @@ urlpatterns = [
     path('', views.SMhome, name='SMhome'),
     path('login/', views.login, name='login'),
     path('SMhome/', views.SMhome, name='SMhome'),
-    path('inentory/', views.inventory, name='inventory'),
+    path('inventory/', views.inventory, name='inventory'),
     path('createPO/', views.createPO, name='create PO'),
     path('recieverPO/', views.recievePO, name='recievePO.html'),
     path('issues/', views.issues, name='issues'),
     path('sendordertovendor/', views.OrderFinalise,
          name='sending order to vendor'),
     path('home_admin/', views.Home_admin, name='home page admin'),
-
+    path('Addproducts/', views.add_products_in_inventory, name='add products in inventory'),
 ]

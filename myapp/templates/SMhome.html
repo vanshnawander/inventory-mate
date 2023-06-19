@@ -36,6 +36,7 @@
 
         <h1>Store Manager Home Page</h1><br>
     </center>
+    <h1>{{ Product_details.product_name }}</h1>
 
     <div id="options">
         <label><input type="radio" name="filter" value="all" checked> All</label>
@@ -60,6 +61,15 @@
             <p>Status: Approved</p>
         </div>
     </div>
+    <div id="itemList">
+        {% for item in Product_details %}
+        <div class="item">
+            <h3>{{item.product_name }}</h3>
+            <p>{{item.price}}</p>
+            <p>{{item.primary_vendor}}</p>
+        </div>
+        {% endfor %}
+    </div>
 
     <script>
         document.querySelectorAll('input[name="filter"]').forEach(function (radio) {
@@ -80,10 +90,11 @@
             });
         });
     </script>
-    <a href="inventory.html">Inventory</a><br><br>
-    <a href="createPO.html">Create Purchase Order</a>
-    <br><br><a href="recievePO.html">Recieve Purchase Order</a>
-    <br><br><a href="issues.html">Issure Stock</a><br><br>
+    <a href="inventory">Inventory</a><br><br>
+    <a href="createPO">Create Purchase Order</a><br><br>
+    <a href="Addproducts">add new products in inventory</a>
+    <br><br><a href="recievePO">Recieve Purchase Order</a>
+    <br><br><a href="issues">Issure Stock</a><br><br>
 
 </body>
 
