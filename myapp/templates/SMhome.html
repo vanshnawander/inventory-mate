@@ -23,6 +23,14 @@
             border: 1px solid #ccc;
             margin-bottom: 10px;
         }
+
+        .approved {
+            color: green;
+        }
+
+        .not-approved {
+            color: red;
+        }
     </style>
 
 </head>
@@ -32,6 +40,13 @@
     <div id="logo">
         <img src="your_logo.png" alt="Logo">
     </div><br>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <center>
 
         <h1>Store Manager Home Page</h1><br>
@@ -48,17 +63,17 @@
         <div class="item">
             <h3>Item 1</h3>
             <p>Date: 2023-06-18</p>
-            <p>Status: Approved</p>
+            <p class="status approved">Status: Approved</p>
         </div>
         <div class="item">
             <h3>Item 2</h3>
             <p>Date: 2023-06-19</p>
-            <p>Status: Not Approved</p>
+            <p class="status not-approved">Status: Not Approved</p>
         </div>
         <div class="item">
             <h3>Item 3</h3>
             <p>Date: 2023-06-20</p>
-            <p>Status: Approved</p>
+            <p class="status approved">Status: Approved</p>
         </div>
     </div>
     <div id="itemList">
@@ -78,10 +93,11 @@
                 var items = document.getElementsByClassName("item");
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
-                    var status = item.querySelector('p:last-child').textContent.trim();
+                    var statusElement = item.querySelector('.status');
+                    var statusText = statusElement.textContent.trim();
                     if (selectedValue === "all" ||
-                        (selectedValue === "approved" && status === "Status: Approved") ||
-                        (selectedValue === "notApproved" && status === "Status: Not Approved")) {
+                        (selectedValue === "approved" && statusText === "Status: Approved") ||
+                        (selectedValue === "notApproved" && statusText === "Status: Not Approved")) {
                         item.style.display = "block";
                     } else {
                         item.style.display = "none";
