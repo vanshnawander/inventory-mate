@@ -29,8 +29,8 @@ class vendor_details(models.Model):
     vendor_phone=models.IntegerField()
 
 class vendor_price(models.Model):
-    vendor_id=models.IntegerField()
-    product_name=models.CharField(max_length=50)
+    vendor_id=models.ForeignKey(vendor_details,on_delete=models.CASCADE)
+    product_name=models.ForeignKey(Product_details,on_delete=models.CASCADE)
     product_price=models.FloatField()
     time_stamp=models.DateTimeField(auto_now_add=True)
     
