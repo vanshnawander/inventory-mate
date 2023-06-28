@@ -30,6 +30,6 @@ urlpatterns = [
     path('sendordertovendor/', views.OrderFinalise,
          name='sending order to vendor'),
     path('home_admin/', views.Home_admin, name='home page admin'),
-    path('SMhome/Addproducts/', views.add_products_in_inventory,
+    path('Addproducts/', views.add_products_in_inventory,
          name='add products in inventory'),
 ]
