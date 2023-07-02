@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Product_details(models.Model):
-    serial_number = models.IntegerField()
+    serial_number = models.IntegerField(unique=True)
     product_name = models.CharField(max_length=50)
     UOM = models.CharField(max_length=10)
     tax_percentage = models.FloatField()
@@ -13,7 +13,7 @@ class Product_details(models.Model):
     quantity_available = models.FloatField()
     
 class list_of_po_iteams(models.Model):
-    po_id=models.IntegerField()
+    po_id=models.IntegerField(unique=True)
     product_name=models.CharField(max_length=50)
     product_price=models.FloatField()
     vendor_name=models.CharField(max_length=30)
