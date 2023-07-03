@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Restaurant Inventory</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .low-quantity {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="goBack()">Go Back</button>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+  <h1>Restaurant Inventory</h1>
+
+  <table id="inventoryTable">
+    <tr>
+      <th>Sno</th>
+      <th>Name</th>
+      <th>UoM (Unit of Measurement)</th>
+      <th>Quantity available</th>
+      <th>Price</th>
+      <th>Tax</th>
+      <th>Primary vendor</th>
+      <th>par value</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Flour</td>
+      <td>kg</td>
+      <td>25</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>paneer</td>
+      <td>kg</td>
+      <td>10</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>butter</td>
+      <td>kg</td>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>milk</td>
+      <td>packets</td>
+      <td>40</td>
+      <td>50</td>
+    </tr>
+    {% for item in Product_details %}
+    <tr>
+      <div class="item">
+        <td>{{item.serial_number }}</td>
+        <td>{{item.product_name}}</td>
+        <td>{{item.UOM}}</td>
+        <td>{{item.quantity_available}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.tax_percentage}}</td>
+        <td>{{item.primary_vendor}}</td>
+        <td>{{item.par_value}}</td>
+      </div>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <script>
+    var inventoryTable = document.getElementById("inventoryTable");
+    var rows = inventoryTable.getElementsByTagName("tr");
+
+    for (var i = 1; i < rows.length; i++) {
+      var quantityCell = rows[i].getElementsByTagName("td")[3];
+      var parValueCell = rows[i].getElementsByTagName("td")[4];
+      var quantity = parseInt(quantityCell.innerText);
+      var parValue = parseInt(parValueCell.innerText);
+
+      if (quantity < parValue) {
+        rows[i].classList.add("low-quantity");
+      }
+    }
+  </script>
+</body>
+
+</html>

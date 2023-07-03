@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Page</title>
 </head>
+
 <body>
-    login page
+    <h1>Login</h1>
+
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="pageSelection">Select Page:</label>
+        <select id="pageSelection" name="pageSelection">
+            <option value="">Select...</option>
+            <option value="SMhome.html">Store Manager</option>
+            <option value="Mhome.html">Manager</option>
+            <option value="ADMINhome.html">Admin</option>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the selected option value
+            var selectedPage = document.getElementById("pageSelection").value;
+
+            // Redirect to the selected page
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        });
+    </script>
 </body>
+
 </html>

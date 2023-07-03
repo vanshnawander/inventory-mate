@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Item List</title>
+    <style>
+        #logo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #options {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #itemList {
+            margin-top: 20px;
+        }
+
+        .item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .approved {
+            color: green;
+        }
+
+        .not-approved {
+            color: red;
+        }
+
+        .btn-approve {
+            background-color: red;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="logo">
+        <img src="your_logo.png" alt="Logo">
+    </div><br>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <center>
+
+        <h1>Store Manager Home Page</h1><br>
+    </center>
+
+    <div id="options">
+        <label><input type="radio" name="filter" value="all" checked> All</label>
+        <label><input type="radio" name="filter" value="approved"> Approved</label>
+        <label><input type="radio" name="filter" value="notApproved"> Not Approved</label>
+    </div>
+
+    <div id="itemList">
+        <div class="item">
+            <h3>Item 1</h3>
+            <p>Date: 2023-06-18</p>
+            <p class="status not-approved">Status: Not Approved</p>
+            <button class="btn-approve" onclick="toggleApproval(this)">Approve</button>
+        </div>
+        <div class="item">
+            <h3>Item 2</h3>
+            <p>Date: 2023-06-19</p>
+            <p class="status not-approved">Status: Not Approved</p>
+            <button class="btn-approve" onclick="toggleApproval(this)">Approve</button>
+        </div>
+        <div class="item">
+            <h3>Item 3</h3>
+            <p>Date: 2023-06-20</p>
+            <p class="status not-approved">Status: Not Approved</p>
+            <button class="btn-approve" onclick="toggleApproval(this)">Approve</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleApproval(button) {
+            var item = button.parentNode;
+            var statusElement = item.querySelector('.status');
+            var statusText = statusElement.textContent.trim();
+
+            if (statusText === 'Status: Not Approved') {
+                statusElement.textContent = 'Status: Approved';
+                statusElement.classList.remove('not-approved');
+                statusElement.classList.add('approved');
+                button.style.backgroundColor = 'green';
+            } else {
+                statusElement.textContent = 'Status: Not Approved';
+                statusElement.classList.remove('approved');
+                statusElement.classList.add('not-approved');
+                button.style.backgroundColor = 'red';
+            }
+        }
+
+        document.querySelectorAll('input[name="filter"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var selectedValue = this.value;
+                var items = document.getElementsByClassName("item");
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var status = item.querySelector('.status').textContent.trim();
+                    if (selectedValue === "all" ||
+                        (selectedValue === "approved" && status === "Status: Approved") ||
+                        (selectedValue === "notApproved" && status === "Status: Not Approved")) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                }
+            });
+        });
+    </script>
+    <a href="inventory.html">Inventory</a><br><br>
+
+
+</body>
+
+</html>
