@@ -24,6 +24,11 @@
             window.history.back();
         }
     </script>
+    <datalist id="items">
+        {% for option in items %}
+    <option value="{{ option }}">
+        {% endfor %}
+      </datalist>
     <center>
         <h1>Create Purchase Order</h1>
         <table style="width:100%">
@@ -38,51 +43,14 @@
 
             </tr>
             <tr>
-                <th>1 </th>
+                <th> 1 </th>
+                <th><input list="items" name="browser" id="browser"></th>
                 <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <tr>
-                <th>2 </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
+                <th> <input id type="text" value="" readonly></th>
                 <th> </th>
                 <th> </th>
                 <th> </th>
             </tr>
-            <tr>
-                <th>3 </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <tr>
-                <th>4 </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <tr>
-                <th>5 </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-
         </table>
         <br><br>
     </center>

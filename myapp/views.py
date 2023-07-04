@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from myapp.models import Product_details
-
+from django.db import connection
 
 def no_such_url_view(request, unknown_url):
     return render(request, '404.html', {'unknown_url': unknown_url})
@@ -34,7 +34,13 @@ def add_products_in_inventory(request):
 
 
 def createPO(request):
-    return render(request, 'createPO.html')
+    query = "SELECT * FROM myapp_Product_details"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        items = cursor.fetchall()
+        items={i[1]:i[2:] for i in items}
+    print(items)
+    return render(request, 'createPO.html', {'items':items})
 
 
 def recievePO(request):
