@@ -13,11 +13,95 @@
             border: 1px solid black;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+      var sno=1;
+      $(document).ready(function() {
+
+        $("#addRowBtn").on("click", function() {
+          var dependentValue = $("#itemval").val();
+  
+         
+          $.ajax({
+            url: "{% url 'get_dynamic_values' %}",
+            type: "GET",
+            data: {
+              dependent_value: dependentValue
+            },
+            success: function(response) {
+                var newRow = $("<tr>");
+
+var serial_num= $("<label></label>").text(sno);
+var nameInput = $("<input>").attr("type", "text").attr("readonly","").val(response.name);
+var Quantity = $("<input>").attr("type", "number").attr("min","1");
+var UOM = $("<input>").attr("type", "text").attr("readonly","").val(response.uom);
+var vendor = $("<input>").attr("type", "text").attr("readonly","").val(response.vendor);
+var Price = $("<input>").attr("type", "text").attr("readonly","").val(response.price);
+
+newRow.append($("<td>").append(serial_num));
+newRow.append($("<td>").append(nameInput));
+newRow.append($("<td>").append(Quantity));
+newRow.append($("<td>").append(UOM));
+newRow.append($("<td>").append(vendor));
+newRow.append($("<td>").append(Price));
+
+$("#myTable").append(newRow);
+sno+=1;
+            },
+            error: function() {
+              alert("Failed to retrieve dynamic values.");
+            }
+          });
+        });
+
+        
+
+      });
+    </script>
+    <script>
+      function submitForm() {
+      var formData = {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'tableData': []
+      };
+
+      $('#myTable tbody tr').each(function() {
+        var row = {};
+        cellIndex=0;
+        $(this).find('td input').each(function() {  
+          var cellValue = $(this).val();
+          row[cellIndex] = cellValue;
+          cellIndex++;
+        });
+
+        formData['tableData'].push(row);
+      });
+
+
+      $.ajax({
+        url: "{% url 'submit_PO_table' %}",
+        type: 'POST',
+        data: JSON.stringify(formData),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function(response) {
+        
+          console.log(response);
+        },
+        error: function(xhr, textStatus, errorThrown) {
+       
+          console.error(xhr.responseText);
+        }
+      });
+    }
+    </script>
 
 </head>
 
 <body>
     <button onclick="goBack()">Go Back</button>
+    
 
     <script>
         function goBack() {
@@ -31,31 +115,25 @@
       </datalist>
     <center>
         <h1>Create Purchase Order</h1>
-        <table style="width:100%">
+        <table id="myTable" style="width:100%">
             <tr>
-                <th>Sno</th>
+              <th>Sno</th>
                 <th>Item</th>
                 <th>Quantity</th>
                 <th>UOM</th>
                 <th>Vendor</th>
                 <th>Price</th>
-                <th><a href="#">Edit</a></th>
-
             </tr>
-            <tr>
-                <th> 1 </th>
-                <th><input list="items" name="browser" id="browser"></th>
-                <th> </th>
-                <th> <input id type="text" value="" readonly></th>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
+          </table>
+          <br>
+          <input list="items" id="itemval" placeholder="enter item name">
+          <button id="addRowBtn">Add Item</button>
         </table>
         <br><br>
+        <button id="SubmitPO" onclick="submitForm()">Submit PO</button>
     </center>
     <a href="#">add items</a>
-    <a href="#">submit PO</a>
+
 </body>
 
 </html>

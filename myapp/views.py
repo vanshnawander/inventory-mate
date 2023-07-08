@@ -4,6 +4,45 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from myapp.models import Product_details
 from django.db import connection
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+def get_dynamic_values(request):
+    dependent_value = request.GET.get('dependent_value')
+    product_name = dependent_value
+    try:
+        row = Product_details.objects.get(product_name=product_name)
+    except Product_details.DoesNotExist:
+        row = None
+    
+    response = {
+        'name': product_name,
+        'uom': row.UOM,
+        'vendor': row.primary_vendor,
+        'price': row.price
+    }
+
+    return JsonResponse(response)
+
+@csrf_exempt
+def submit_PO_table(request):
+    if request.method == 'POST':
+        try:
+            form_data = json.loads(request.body)
+            table_data = form_data['tableData']
+            for row in table_data:
+                name=row.get("0")
+                
+            print(table_data)
+
+            return JsonResponse({'message': 'Form data saved successfully.'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
 
 def no_such_url_view(request, unknown_url):
     return render(request, '404.html', {'unknown_url': unknown_url})
