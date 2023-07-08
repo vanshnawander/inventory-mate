@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.SMhome, name='SMhome'),
     path('login/', views.login, name='login'),
     path('SMhome/', views.SMhome, name='SMhome'),
+    path('Mhome/', views.Mhome, name='Mhome'),
     path('inventory/', views.inventory, name='inventory'),
     path('createPO/', views.createPO, name='create PO'),
     path('recieverPO/', views.recievePO, name='recievePO.html'),

@@ -119,3 +119,6 @@ def OrderFinalise(request):
 
 def Home_admin(request):
     return render(request, 'home_admin.html')
+
+def Mhome(request):
+    return render(request, 'Mhome.html')
