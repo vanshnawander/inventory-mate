@@ -73,6 +73,9 @@ def add_products_in_inventory(request):
 
 
 def createPO(request):
+    referer = request.META.get('HTTP_REFERER')
+    if not referer:
+        return render(request,'404.html')
     query = "SELECT * FROM myapp_Product_details"
     with connection.cursor() as cursor:
         cursor.execute(query)
