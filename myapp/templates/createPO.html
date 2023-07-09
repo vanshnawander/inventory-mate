@@ -34,7 +34,7 @@
 
 var serial_num= $("<label></label>").text(sno);
 var nameInput = $("<input>").attr("type", "text").attr("readonly","").val(response.name);
-var Quantity = $("<input>").attr("type", "number").attr("min","1");
+var Quantity = $("<input>").attr("type", "number").attr("value","1").attr("min","1");
 var UOM = $("<input>").attr("type", "text").attr("readonly","").val(response.uom);
 var vendor = $("<input>").attr("type", "text").attr("readonly","").val(response.vendor);
 var Price = $("<input>").attr("type", "text").attr("readonly","").val(response.price);
@@ -60,6 +60,7 @@ sno+=1;
       });
     </script>
     <script>
+
       function submitForm() {
       var formData = {
         'csrfmiddlewaretoken': '{{ csrf_token }}',
