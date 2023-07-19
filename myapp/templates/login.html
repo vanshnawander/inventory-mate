@@ -8,7 +8,7 @@
 <body>
     <h1>Login</h1>
 
-    <form id="loginForm">
+    <form id="loginForm" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <br>
@@ -18,9 +18,9 @@
         <label for="pageSelection">Select Page:</label>
         <select id="pageSelection" name="pageSelection">
             <option value="">Select...</option>
-            <option value="SMhome.html">Store Manager</option>
-            <option value="Mhome.html">Manager</option>
-            <option value="ADMINhome.html">Admin</option>
+            <option value="Store Manager">Store Manager</option>
+            <option value="Manager">Manager</option>
+            <option value="ADMINhome">Admin</option>
         </select>
         <br>
         <input type="submit" value="Submit">

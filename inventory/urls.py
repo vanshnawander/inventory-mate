@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path
 from myapp import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # path('<path:unknown_url>/', views.no_such_url_view, name='no_such_url'),
     path('admin/', admin.site.urls),
-    path('', views.SMhome, name='SMhome'),
-    path('login/', views.login, name='login'),
+    #path('', views.SMhome, name='SMhome'),
+    path('', views.login_view, name='login'),
     path('SMhome/', views.SMhome, name='SMhome'),
     path('Mhome/', views.Mhome, name='Mhome'),
     path('inventory/', views.inventory, name='inventory'),

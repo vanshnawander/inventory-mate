@@ -3,10 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from myapp.models import Product_details
+from myapp.models import Users
 from django.db import connection
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth.decorators import login_required
 
 def get_dynamic_values(request):
     dependent_value = request.GET.get('dependent_value')
@@ -47,12 +49,26 @@ def submit_PO_table(request):
 def no_such_url_view(request, unknown_url):
     return render(request, '404.html', {'unknown_url': unknown_url})
 
+@csrf_exempt
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        role =  request.POST['pageSelection']
+        try:
+            user = Users.objects.get(user_name=username,password=password,role=role)
+        except:
+            user=None
+        if user:
+            print("hello")
+            return render(request,'PO.html')
+        else:
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
+    else:
+        return render(request, 'login.html')
 
-def login(request):
-    return render(request, 'login.html',)
 
-
-def SMhome(request):
+def SMhome(request,user):
     if request.method == 'POST':
         product_name = request.POST['product_name']
         UOM = request.POST['uom']
@@ -120,8 +136,9 @@ def OrderFinalise(request):
     return render(request, 'orderFinal.html')
 
 
-def Home_admin(request):
-    return render(request, 'home_admin.html')
+def Home_admin(request,user):
+    print(request)
+    return render(request, 'ADMINhome.html')
 
 def Mhome(request):
     return render(request, 'Mhome.html')

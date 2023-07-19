@@ -1,7 +1,17 @@
 from django.db import models
 
 # Create your models here.
-
+class Users(models.Model):
+    
+    ROLE_CHOICES = [
+        ('store_manager', 'Store Manager'),
+        ('manager', 'Manager'),
+        ('admin', 'Admin'),
+    ]
+    
+    user_name= models.CharField(max_length=50)
+    password=models.CharField(max_length=30)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
 class Product_details(models.Model):
     serial_number = models.IntegerField(unique=True)
