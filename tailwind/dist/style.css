@@ -542,6 +542,10 @@ video {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-auto {
   height: auto;
 }
@@ -693,6 +697,14 @@ video {
   .md\:mx-4 {
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:w-1\/2 {
