@@ -725,6 +725,10 @@ video {
     margin-right: 1rem;
   }
 
+  .md\:block {
+    display: block;
+  }
+
   .md\:hidden {
     display: none;
   }
