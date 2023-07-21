@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <form method="post" action="{% url 'SMhome' %}">
+    <form method="post" action="{% url 'inventory' %}">
         {% csrf_token %}
-        <label >product_name</label>
+        <label>serial_number</label>
+        <input type="text" id="serial_number" name="serial_number" required>
+        <br>
+        <label>product_name</label>
         <input type="text" id="product_name" name="product_name" required>
         <br>
-        <label >UOM</label>
+        <label>UOM</label>
         <input type="text" id="uom" name="uom" required>
         <br>
-        <label >tax_percentage</label>
+        <label>tax_percentage</label>
         <input type="number" id="tax_percentage" name="tax_percentage" required>
         <br>
-        <label >price</label>
+        <label>price</label>
         <input type="number" id="price" name="price" required>
         <br>
-        <label >primary_vendor</label>
+        <label>primary_vendor</label>
         <input type="text" id="primary_vendor" name="primary_vendor" required>
         <br>
-        <label >quantity_available</label>
+        <label>quantity_available</label>
         <input type="text" id="quantity_available" name="quantity_available" required>
+        <br>
+        <label>par_value</label>
+        <input type="text" id="par_value" name="par_value" required>
         <br>
         <button type="submit">Submit</button>
     </form>
 </body>
+
 </html>
