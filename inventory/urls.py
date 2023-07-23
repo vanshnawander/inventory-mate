@@ -1,28 +1,18 @@
-"""inventory URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 from myapp import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # path('<path:unknown_url>/', views.no_such_url_view, name='no_such_url'),
     path('admin/', admin.site.urls),
-    path('', views.SMhome, name='SMhome'),
-    path('login/', views.login, name='login'),
+    #path('', views.SMhome, name='SMhome'),
+    path('', views.login_view, name='login'),
     path('SMhome/', views.SMhome, name='SMhome'),
+<<<<<<< HEAD
+=======
+    path('Mhome/', views.Mhome, name='Mhome'),
+>>>>>>> dd9efee4d5d54d44a0ff8b1530dfc7b8888b10ae
     path('inventory/', views.inventory, name='inventory'),
     path('createPO/', views.createPO, name='create PO'),
     path('recieverPO/', views.recievePO, name='recievePO.html'),
@@ -32,4 +22,6 @@ urlpatterns = [
     path('home_admin/', views.Home_admin, name='home page admin'),
     path('Addproducts/', views.add_products_in_inventory,
          name='add products in inventory'),
+    path('get_dynamic_values/', views.get_dynamic_values, name='get_dynamic_values'),
+    path('submit_PO_table/', views.submit_PO_table, name='submit_PO_table'),
 ]
