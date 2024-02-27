@@ -4,11 +4,50 @@
 <head>
     <title>Login Page</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script >
+$(document).ready(function() {
+  $('#loginForm').submit(function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    // Get the input values
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var role = $('#pageSelection').val();
+
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'login_valid' %}",  // Replace with your login URL
+      data: {
+        'username': username,
+        'password': password,
+        'role' : role,
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+      },
+      success: function(response) {
+        // Handle the response from the server
+        if (response.success) {
+          // Successful login, redirect or perform other actions
+          alert('Login successful!');
+        } else {
+          // Invalid login credentials
+          alert('Invalid username or password.');
+        }
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        // Handle the AJAX request error
+        console.error('Error:', errorThrown);
+      }
+    });
+  });
+});
+  </script>
 
 <body>
     <h1>Login</h1>
 
-    <form id="loginForm" method="post">
+    <form id="loginForm" >
+        {% csrf_token %}
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <br>
@@ -18,27 +57,14 @@
         <label for="pageSelection">Select Page:</label>
         <select id="pageSelection" name="pageSelection">
             <option value="">Select...</option>
-            <option value="Store Manager">Store Manager</option>
-            <option value="Manager">Manager</option>
-            <option value="ADMINhome">Admin</option>
+            <option value="SMhome" id="SMhome" >Store Manager</option>
+            <option value="Mhome" id="Mhome">Manager</option>
+            <option value="ADMINhome" id="ADMINhome">Admin</option>
         </select>
         <br>
-        <input type="submit" value="Submit">
+        <button id="login" type="submit">login</button>
     </form>
 
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent form submission
-
-            // Get the selected option value
-            var selectedPage = document.getElementById("pageSelection").value;
-
-            // Redirect to the selected page
-            if (selectedPage) {
-                window.location.href = selectedPage;
-            }
-        });
-    </script>
 </body>
 
 </html>

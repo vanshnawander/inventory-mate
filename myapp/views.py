@@ -49,12 +49,32 @@ def submit_PO_table(request):
 def no_such_url_view(request, unknown_url):
     return render(request, '404.html', {'unknown_url': unknown_url})
 
+
 @csrf_exempt
+def login_valid(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        role = request.POST['role']
+        try:
+            user = Users.objects.get(user_name=username,password=password,role=role)
+        except:
+            user=None
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False})
+    else:
+        return render(request, 'login.html')
+
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        role =  request.POST['pageSelection']
+        role =  request.POST['role']
         try:
             user = Users.objects.get(user_name=username,password=password,role=role)
         except:
@@ -68,7 +88,7 @@ def login_view(request):
         return render(request, 'login.html')
 
 
-def SMhome(request,user):
+def SMhome(request):
     if request.method == 'POST':
         product_name = request.POST['product_name']
         UOM = request.POST['uom']

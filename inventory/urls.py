@@ -7,7 +7,7 @@ urlpatterns = [
     # path('<path:unknown_url>/', views.no_such_url_view, name='no_such_url'),
     path('admin/', admin.site.urls),
     #path('', views.SMhome, name='SMhome'),
-    path('', views.login_view, name='login'),
+    path('', views.SMhome, name='login'),
     path('SMhome/', views.SMhome, name='SMhome'),
     path('Mhome/', views.Mhome, name='Mhome'),
     path('inventory/', views.inventory, name='inventory'),
